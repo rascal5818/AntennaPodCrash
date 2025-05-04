@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
+
 import de.danoeh.antennapod.R;
 import de.danoeh.antennapod.activity.MainActivity;
 import de.danoeh.antennapod.databinding.HomeFragmentBinding;
@@ -41,6 +42,8 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
+
+import com.uxcam.UXCam;
 
 /**
  * Shows unread or recently published episodes
@@ -180,4 +183,11 @@ public class HomeFragment extends Fragment implements Toolbar.OnMenuItemClickLis
                 }, error -> Log.e(TAG, Log.getStackTraceString(error)));
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        UXCam.occludeSensitiveScreen(false);
+        UXCam.tagScreenName("Home Screen");
+        UXCam.logEvent("Entered HomeFragment");
+    }
 }

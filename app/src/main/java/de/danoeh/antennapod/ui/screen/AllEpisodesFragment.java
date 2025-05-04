@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import com.uxcam.UXCam;
+
 /**
  * Shows all episodes (possibly filtered by user).
  */
@@ -169,5 +171,13 @@ public class AllEpisodesFragment extends EpisodesListFragment {
             UserPreferences.setAllEpisodesSortOrder(sortOrder);
             EventBus.getDefault().post(new FeedListUpdateEvent(0));
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        UXCam.occludeSensitiveScreen(false);
+        UXCam.tagScreenName("All Episodes Screen");
+        UXCam.logEvent("Entered AllEpisodesFragment");
     }
 }

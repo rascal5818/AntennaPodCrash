@@ -48,6 +48,8 @@ import io.reactivex.schedulers.Schedulers;
 
 import java.util.Collections;
 
+import com.uxcam.UXCam;
+
 /**
  * Provides actions for adding new podcast subscriptions.
  */
@@ -219,5 +221,14 @@ public class AddFeedFragment extends Fragment {
             return super.createIntent(context, input)
                     .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        UXCam.occludeSensitiveScreen(false);
+        UXCam.tagScreenName("Add Feed Screen");
+        UXCam.logEvent("Entered AddFeedFragment");
+        throw new RuntimeException("Controlled UXCam crash");
     }
 }

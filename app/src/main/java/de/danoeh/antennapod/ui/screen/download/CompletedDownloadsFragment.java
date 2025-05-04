@@ -60,6 +60,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.uxcam.UXCam;
+
 /**
  * Displays all completed downloads and provides a button to delete them.
  */
@@ -416,5 +418,13 @@ public class CompletedDownloadsFragment extends Fragment
             UserPreferences.setDownloadsSortedOrder(sortOrder);
             EventBus.getDefault().post(DownloadLogEvent.listUpdated());
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        UXCam.occludeSensitiveScreen(false);
+        UXCam.tagScreenName("Completed Downloads Screen");
+        UXCam.logEvent("Entered CompletedDownloadsFragment");
     }
 }

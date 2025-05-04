@@ -27,6 +27,8 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
+import com.uxcam.UXCam;
+
 /**
  * Like 'EpisodesFragment' except that it only shows new episodes and
  * supports swiping to mark as read.
@@ -147,5 +149,13 @@ public class InboxFragment extends EpisodesListFragment {
             UserPreferences.setInboxSortedOrder(sortOrder);
             EventBus.getDefault().post(new FeedListUpdateEvent(0));
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        UXCam.occludeSensitiveScreen(false);
+        UXCam.tagScreenName("Inbox Screen");
+        UXCam.logEvent("Entered InboxFragment");
     }
 }

@@ -28,6 +28,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
+import com.uxcam.UXCam;
 
 import de.danoeh.antennapod.event.playback.SpeedChangedEvent;
 import de.danoeh.antennapod.ui.screen.InboxFragment;
@@ -724,5 +725,13 @@ public class QueueFragment extends Fragment implements MaterialToolbar.OnMenuIte
             DBWriter.moveQueueItem(from, to, true);
         }
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        UXCam.occludeSensitiveScreen(false);
+        UXCam.tagScreenName("Queue Screen");
+        UXCam.logEvent("Entered QueueFragment");
     }
 }

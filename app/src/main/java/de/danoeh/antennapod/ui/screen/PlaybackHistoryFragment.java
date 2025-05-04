@@ -21,6 +21,8 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
+import com.uxcam.UXCam;
+
 public class PlaybackHistoryFragment extends EpisodesListFragment {
     public static final String TAG = "PlaybackHistoryFragment";
     private static final FeedItemFilter FILTER_HISTORY = new FeedItemFilter(
@@ -107,5 +109,19 @@ public class PlaybackHistoryFragment extends EpisodesListFragment {
     @Override
     protected int loadTotalItemCount() {
         return DBReader.getTotalEpisodeCount(FILTER_HISTORY);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        UXCam.occludeSensitiveScreen(true);
+        UXCam.tagScreenName("Playback History Screen");
+        UXCam.logEvent("Entered PlaybackHistoryFragment");
+    }
+
+    @Override
+    public void onPause() {
+        UXCam.occludeSensitiveScreen(false);
+        super.onPause();
     }
 }

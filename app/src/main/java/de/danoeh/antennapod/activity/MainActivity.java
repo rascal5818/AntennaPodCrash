@@ -86,6 +86,9 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.uxcam.UXCam;
+import com.uxcam.datamodel.UXConfig;
+
 /**
  * The activity that is shown when the user launches the app.
  */
@@ -122,6 +125,21 @@ public class MainActivity extends CastEnabledActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        // UXCam initialization
+        UXConfig config = new UXConfig.Builder("8ald34liorra4t0")
+                .enableAutomaticScreenNameTagging(true)
+                .build();
+        UXCam.startWithConfiguration(config);
+        UXCam.setUserIdentity("Lorene Lynch");
+        UXCam.setUserProperty("gender", "female");
+        UXCam.setUserProperty("age", "28");
+        UXCam.setUserProperty("dob", "01-01-1980");
+        UXCam.setUserProperty("language", "es");
+        UXCam.setUserProperty("role", "user");
+        UXCam.setUserProperty("subscription_type", "free");
+        UXCam.setUserProperty("company_name", "amazon");
+        // end UXCam initialization
+
         lastTheme = ThemeSwitcher.getNoTitleTheme(this);
         setTheme(lastTheme);
         if (savedInstanceState != null) {

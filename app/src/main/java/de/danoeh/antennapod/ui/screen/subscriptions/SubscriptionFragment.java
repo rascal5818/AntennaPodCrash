@@ -55,6 +55,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
+import com.uxcam.UXCam;
+
 /**
  * Fragment for displaying feed subscriptions
  */
@@ -415,5 +417,13 @@ public class SubscriptionFragment extends Fragment
         floatingSelectMenu.setVisibility(View.VISIBLE);
         subscriptionAddButton.setVisibility(View.GONE);
         updateFilterVisibility();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        UXCam.occludeSensitiveScreen(false);
+        UXCam.tagScreenName("Subscriptions Screen");
+        UXCam.logEvent("Entered SubscriptionsFragment");
     }
 }
